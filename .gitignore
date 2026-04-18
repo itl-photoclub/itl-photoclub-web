@@ -19,3 +19,10 @@ impeccable-setup-log.md
 IMG_3370.JPG
 *.JPG
 !images/*.jpg
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
