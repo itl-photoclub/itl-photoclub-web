@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
+
+# Local work artifacts
+impeccable-setup-log.md
+
+# Master photo (not tracked — optimized versions live in images/)
+IMG_3370.JPG
+*.JPG
+!images/*.jpg
