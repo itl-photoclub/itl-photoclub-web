@@ -1,0 +1,6 @@
+# Files not served as public assets
+README.md
+.impeccable.md
+wrangler.jsonc
+.assetsignore
+.github/
