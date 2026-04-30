@@ -16,10 +16,19 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // --- Mobile menu ---
-const menuToggle = document.getElementById('menu-toggle');
-const siteNav    = document.getElementById('site-nav');
+const menuToggle  = document.getElementById('menu-toggle');
+const siteNav     = document.getElementById('site-nav');
+const mainContent = document.getElementById('main-content');
+const siteFooter  = document.querySelector('.site-footer');
 
 const isMobileNav = () => window.matchMedia('(max-width: 767px)').matches;
+
+// Mark background regions inert while the overlay menu is open so screen
+// readers and Tab focus stay scoped to the menu.
+function setBackgroundInert(isInert) {
+    if (mainContent) mainContent.toggleAttribute('inert', isInert);
+    if (siteFooter)  siteFooter.toggleAttribute('inert', isInert);
+}
 
 menuToggle.addEventListener('click', () => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -28,6 +37,7 @@ menuToggle.addEventListener('click', () => {
     menuToggle.setAttribute('aria-expanded', String(next));
     menuToggle.setAttribute('aria-label', next ? 'メニューを閉じる' : 'メニューを開く');
     siteNav.classList.toggle('is-open', next);
+    setBackgroundInert(next);
 });
 
 // Shared close function
@@ -35,11 +45,17 @@ function closeMenu() {
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'メニューを開く');
     siteNav.classList.remove('is-open');
+    setBackgroundInert(false);
 }
 
 // Close on nav link click (mobile)
 siteNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
+});
+
+// Auto-close when crossing into desktop breakpoint so inert never lingers
+window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
+    if (e.matches) closeMenu();
 });
 
 // Keyboard: Escape closes, Tab traps focus within toggle + nav links on mobile
@@ -70,6 +86,8 @@ document.addEventListener('keydown', e => {
 });
 
 // --- Smooth scroll with header offset ---
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
         const id = anchor.getAttribute('href');
@@ -78,7 +96,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (!target) return;
         e.preventDefault();
         const top = target.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top, behavior: 'smooth' });
+        window.scrollTo({ top, behavior: prefersReducedMotion.matches ? 'auto' : 'smooth' });
     });
 });
 

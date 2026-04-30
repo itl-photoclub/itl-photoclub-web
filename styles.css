@@ -88,6 +88,7 @@
     /* Layout */
     --container-max: 1120px;
     --header-h:      64px;
+    --touch-min:     44px;
 }
 
 /* --- Base --- */
@@ -293,7 +294,9 @@ img {
     }
 
     .nav-list a {
-        display: block;
+        display: flex;
+        align-items: center;
+        min-height: var(--touch-min);
         padding-block: var(--sp-3);
         font-size: var(--text-base);
         border-bottom: 1px solid var(--color-border);
@@ -581,6 +584,13 @@ img {
     color: var(--color-text-secondary);
 }
 
+.welcome-venue:has(.welcome-time) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
 .welcome-date-item.is-past .welcome-date,
 .welcome-date-item.is-past .welcome-venue {
     color: var(--color-text-muted);
@@ -598,6 +608,12 @@ img {
     border-radius: var(--radius-sm);
     vertical-align: 0.15em;
     white-space: nowrap;
+}
+
+.welcome-time {
+    display: block;
+    margin-block-start: var(--sp-1);
+    font-variant-numeric: tabular-nums;
 }
 
 .welcome-note {
@@ -932,12 +948,13 @@ img {
     display: inline-flex;
     align-items: center;
     gap: var(--sp-2);
+    min-height: var(--touch-min);
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--color-brand);
     text-decoration: none;
     letter-spacing: 0.02em;
-    padding-block-end: var(--sp-1);
+    padding-block: var(--sp-2);
     border-bottom: 1px solid var(--color-brand-tint);
     align-self: flex-start;
     transition: color var(--dur-fast) ease,
@@ -949,11 +966,15 @@ img {
     border-bottom-color: var(--color-brand-hover);
 }
 
-.achievement-link svg {
+/* External-link arrow — diagonal nudge on hover */
+.ext-icon {
+    flex-shrink: 0;
     transition: transform var(--dur-base) var(--ease-out-expo);
 }
 
-.achievement-link:hover svg { transform: translateX(4px); }
+a:hover .ext-icon {
+    transform: translate(2px, -2px);
+}
 
 /* ============================================================
    Contact
@@ -984,17 +1005,16 @@ img {
 
 .contact-email {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 2.5vw, var(--text-lg));
+    font-size: clamp(var(--text-base), 2.5vw, var(--text-lg));
     font-weight: 400;
     color: var(--color-text);
     text-decoration: none;
     letter-spacing: -0.01em;
     border-bottom: 1px solid var(--color-border-strong);
-    padding-block-end: var(--sp-1);
+    padding-block: var(--sp-2);
     display: inline-block;
     max-width: 100%;
     overflow-wrap: anywhere;
-    word-break: break-all;
     transition: color var(--dur-fast) ease,
                 border-color var(--dur-fast) ease;
 }
@@ -1015,6 +1035,7 @@ img {
     display: inline-flex;
     align-items: center;
     gap: var(--sp-3);
+    min-height: var(--touch-min);
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
     text-decoration: none;
@@ -1048,11 +1069,15 @@ img {
 }
 
 .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    min-height: var(--touch-min);
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
     text-decoration: none;
     border-bottom: 1px solid var(--color-border);
-    padding-block-end: 1px;
+    padding-block: var(--sp-2);
     transition: color var(--dur-fast) ease,
                 border-color var(--dur-fast) ease;
 }
@@ -1079,7 +1104,7 @@ img {
     }
 
     .burger-line,
-    .achievement-link svg {
+    .ext-icon {
         transition: none;
     }
 }
