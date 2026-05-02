@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iTL写真部 おすすめカメラ診断</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+          circle at top left,
+          #3f3f46 0,
+          #18181b 35%,
+          #09090b 100%
+        );
+        color: #fff;
+        min-height: 100vh;
+      }
+
+      .page {
+        width: min(100%, 1080px);
+        margin: 0 auto;
+        padding: 32px 20px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 24px;
+      }
+
+      .brand p {
+        margin: 0;
+        color: #a1a1aa;
+        font-size: 14px;
+      }
+
+      .brand h1 {
+        margin: 2px 0 0;
+        font-size: 20px;
+      }
+
+      .reset-button {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-radius: 999px;
+        padding: 10px 16px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .reset-button:hover {
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 1fr 0.95fr;
+        gap: 36px;
+        align-items: center;
+        min-height: 70vh;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(251, 191, 36, 0.12);
+        color: #fde68a;
+        border: 1px solid rgba(251, 191, 36, 0.24);
+        font-size: 14px;
+      }
+
+      .hero h2 {
+        margin: 0;
+        font-size: clamp(40px, 7vw, 68px);
+        line-height: 1.05;
+        letter-spacing: -0.06em;
+      }
+
+      .hero p {
+        margin-top: 22px;
+        color: #d4d4d8;
+        line-height: 1.9;
+        max-width: 560px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 32px;
+        padding: 24px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(12px);
+      }
+
+      .progress-wrap {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 28px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #fff;
+        border-radius: 999px;
+        transition: width 0.3s ease;
+      }
+
+      .question-count {
+        color: #a1a1aa;
+        font-size: 14px;
+        margin: 0 0 8px;
+      }
+
+      .question-title {
+        margin: 0 0 10px;
+        font-size: 26px;
+        line-height: 1.4;
+      }
+
+      .question-description {
+        margin: 0 0 24px;
+        color: #d4d4d8;
+        line-height: 1.8;
+        font-size: 15px;
+      }
+
+      .options {
+        display: grid;
+        gap: 12px;
+      }
+
+      .option-button {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-radius: 18px;
+        padding: 16px;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.55;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .option-button:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      .result-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(52, 211, 153, 0.12);
+        color: #a7f3d0;
+        border: 1px solid rgba(52, 211, 153, 0.24);
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .result-title {
+        margin: 0;
+        font-size: 32px;
+        line-height: 1.25;
+      }
+
+      .result-subtitle {
+        margin: 10px 0 0;
+        color: #d4d4d8;
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .result-description {
+        margin-top: 20px;
+        color: #d4d4d8;
+        line-height: 1.9;
+      }
+
+      .result-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .result-item {
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 16px;
+        line-height: 1.7;
+      }
+
+      .answers-box {
+        margin-top: 22px;
+        background: rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        padding: 16px;
+        color: #d4d4d8;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .answers-box strong {
+        display: block;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 820px) {
+        header {
+          align-items: flex-start;
+        }
+
+        main {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand">
+          <div class="logo">📷</div>
+          <div>
+            <p>写真部 新入生向け</p>
+            <h1>おすすめカメラ診断</h1>
+          </div>
+        </div>
+        <button class="reset-button" id="resetButton">最初から</button>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-badge">新歓・体験入部で使えるミニ診断</div>
+          <h2>初めてのカメラ、<br />どれが合う？</h2>
+          <p>
+            いくつかの質問に答えるだけで、自分に合いそうなカメラタイプを診断できます。
+            価格・撮影スタイル・センサーサイズ・色味の好みから、写真部の先輩目線でおすすめを出します。
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="progress-wrap">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div id="quizArea"></div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          id: "budget",
+          title: "Q1. 予算はどのくらい？",
+          description: "カメラ本体＋最初のレンズを買う想定で考えてみよう。",
+          options: [
+            { label: "〜15万円", value: "under15" },
+            { label: "15〜25万円", value: "15to25" },
+            { label: "25万円〜", value: "over25" },
+          ],
+        },
+        {
+          id: "weight_or_control",
+          title: "Q2. 持ち歩きやすさと撮りやすさ、どっちを重視する？",
+          description:
+            "毎日持ち歩くなら軽さ、しっかり構えて撮るなら操作性が大事。",
+          options: [
+            { label: "軽くて持ち歩きやすい方がいい", value: "light" },
+            { label: "少し重くても操作しやすい方がいい", value: "control" },
+          ],
+        },
+        {
+          id: "design_or_function",
+          title: "Q3. カメラ選びで重視したいのは？",
+          options: [
+            { label: "デザイン・所有感を大事にしたい", value: "design" },
+            { label: "機能性・性能を重視したい", value: "function" },
+          ],
+        },
+        {
+          id: "shooting_style",
+          title: "Q4. どんなスタイルで撮りたい？",
+          options: [
+            {
+              label: "ファインダーありでしっかり撮りたい",
+              value: "viewfinder",
+            },
+            { label: "モニターを見てカジュアルに撮りたい", value: "monitor" },
+          ],
+        },
+        {
+          id: "sensor_size",
+          title: "Q5. センサーサイズはどっちが気になる？",
+          options: [
+            { label: "APS-C（軽くて扱いやすい）", value: "apsc" },
+            { label: "フルサイズ（高画質・ボケ）", value: "fullframe" },
+          ],
+        },
+        {
+          id: "color_style",
+          title: "Q6. 色味はどっち派？",
+          options: [
+            { label: "編集で追い込みたい", value: "edit" },
+            { label: "撮影時の色を大事にしたい", value: "camera_color" },
+          ],
+        },
+        {
+          id: "lens_plan",
+          title: "Q7. レンズはどうしたい？",
+          options: [
+            { label: "まずは1本でOK", value: "simple" },
+            { label: "いろいろ増やしたい", value: "expand" },
+          ],
+        },
+      ];
+
+      const results = {
+        compact: {
+          title: "軽快スナップ派",
+          subtitle: "まずは軽く持ち出せるカメラが合いそう。",
+          description:
+            "気軽に持ち歩けることを重視するタイプ。カメラを持ち出す回数が増えるので、写真を始めたばかりでも上達しやすいです。",
+          items: [
+            "おすすめ方向性：軽量APS-Cミラーレス / 高級コンデジ",
+            "候補例：FUJIFILM X-M5、Sony α6400、RICOH GR系など",
+            "写真部での使い方：日常スナップ、旅行、街歩きに強い",
+          ],
+        },
+        fuji: {
+          title: "色味・デザイン重視派",
+          subtitle: "撮った瞬間の雰囲気を楽しめるカメラが合いそう。",
+          description:
+            "カメラの見た目や色味を大切にしたいタイプ。撮影体験そのものを楽しみたい人に向いています。",
+          items: [
+            "おすすめ方向性：FUJIFILM系APS-Cミラーレス",
+            "候補例：FUJIFILM X-S20、X-T30 II、X-T50など",
+            "写真部での使い方：ポートレート、スナップ、作品撮りに強い",
+          ],
+        },
+        balanced: {
+          title: "王道バランス派",
+          subtitle: "価格・性能・扱いやすさのバランスが良いカメラが合いそう。",
+          description:
+            "初めての1台として失敗しにくいタイプ。写真も動画も幅広く使いやすく、レンズ交換の楽しさも味わえます。",
+          items: [
+            "おすすめ方向性：APS-Cミラーレス",
+            "候補例：Sony α6400 / α6700、Canon EOS R50 / R10、Nikon Z fcなど",
+            "写真部での使い方：風景、人物、スナップ、イベント撮影まで幅広く対応",
+          ],
+        },
+        entry_fullframe: {
+          title: "エントリーフルサイズ派",
+          subtitle: "フルサイズを始めたいけど、価格は抑えたい。",
+          description:
+            "フルサイズに興味があるけど、いきなり高級機は厳しい人向け。画質の良さを感じつつ、現実的な価格帯でスタートできます。",
+          items: [
+            "おすすめ方向性：エントリーフルサイズミラーレス",
+            "候補例：Nikon Z5、Canon EOS RP など",
+            "写真部での使い方：ポートレート、風景、作品撮りの入門に最適",
+          ],
+        },
+        fullframe: {
+          title: "本格フルサイズ派",
+          subtitle: "画質・ボケ・暗所性能を重視した本格派。",
+          description:
+            "少し大きく重くなっても、しっかり写真に向き合いたいタイプ。作品撮りや夜景、ポートレートにも挑戦しやすいです。",
+          items: [
+            "おすすめ方向性：フルサイズミラーレス",
+            "候補例：Sony α7シリーズ、Canon EOS R6 / R8、Nikon Z6系など",
+            "写真部での使い方：ポートレート、夜景、作品制作に強い",
+          ],
+        },
+        performance: {
+          title: "機能性・性能重視派",
+          subtitle: "AFや操作性を活かして、しっかり撮れるカメラが合いそう。",
+          description:
+            "性能や使いやすさを重視するタイプ。動く被写体や動画にも挑戦したい人に向いています。",
+          items: [
+            "おすすめ方向性：高性能APS-C / エントリーフルサイズ",
+            "候補例：Sony α6700、Canon EOS R10 / R8、Nikon Z50IIなど",
+            "写真部での使い方：イベント、スポーツ、動画、動物撮影に強い",
+          ],
+        },
+      };
+
+      let currentStep = 0;
+      let answers = {};
+
+      const quizArea = document.getElementById("quizArea");
+      const progressBar = document.getElementById("progressBar");
+      const resetButton = document.getElementById("resetButton");
+
+      function renderQuestion() {
+        const question = questions[currentStep];
+        const progress = Math.round((currentStep / questions.length) * 100);
+        progressBar.style.width = progress + "%";
+
+        quizArea.innerHTML = `
+          <p class="question-count">${currentStep + 1} / ${questions.length}</p>
+          <h3 class="question-title">${question.title}</h3>
+          <p class="question-description">${question.description}</p>
+          <div class="options">
+            ${question.options
+              .map(
+                (option) => `
+              <button class="option-button" data-value="${option.value}">${option.label}</button>
+            `,
+              )
+              .join("")}
+          </div>
+        `;
+
+        document.querySelectorAll(".option-button").forEach((button) => {
+          button.addEventListener("click", () => {
+            answers[question.id] = button.dataset.value;
+            currentStep++;
+
+            if (currentStep >= questions.length) {
+              renderResult();
+            } else {
+              renderQuestion();
+            }
+          });
+        });
+      }
+
+      function getResultKey() {
+        const budget = answers.budget;
+        const weight = answers.weight_or_control;
+        const design = answers.design_or_function;
+        const shooting = answers.shooting_style;
+        const sensor = answers.sensor_size;
+        const color = answers.color_style;
+        const lens = answers.lens_plan;
+
+        const isSerious =
+          weight === "control" &&
+          design === "function" &&
+          shooting === "viewfinder" &&
+          color === "edit" &&
+          lens === "expand";
+
+        // フルサイズ分岐（改良版）
+        if (sensor === "fullframe") {
+          // 本気勢なら予算が中でも上位機へ
+          if (isSerious && budget !== "under15") {
+            return "fullframe";
+          }
+
+          // それ以外はエントリー
+          return "entry_fullframe";
+        }
+
+        // レンズ拡張
+        if (lens === "expand") {
+          if (budget === "under15" || budget === "15to25") {
+            return "balanced";
+          }
+          if (budget === "over25") {
+            return "performance";
+          }
+        }
+
+        if (design === "design" || color === "camera_color") {
+          return "fuji";
+        }
+
+        if (weight === "light" || shooting === "monitor") {
+          return "compact";
+        }
+
+        if (design === "function" || color === "edit") {
+          return "performance";
+        }
+
+        return "balanced";
+      }
+      function renderResult() {
+        progressBar.style.width = "100%";
+        const result = results[getResultKey()];
+        const showCanonWarning =
+          answers.lens_plan === "expand" &&
+          result.items.some((item) => item.includes("Canon"));
+
+        const answerLabels = questions
+          .map((question) => {
+            const selected = question.options.find(
+              (option) => option.value === answers[question.id],
+            );
+            return `<div>・${question.title.replace(/^Q\d+\.\s*/, "")}：${selected ? selected.label : "未回答"}</div>`;
+          })
+          .join("");
+
+        quizArea.innerHTML = `
+          <div class="result-badge">診断結果</div>
+          <h3 class="result-title">${result.title}</h3>
+          <p class="result-subtitle">${result.subtitle}</p>
+          <p class="result-description">${result.description}</p>
+          ${
+            showCanonWarning
+              ? `
+                      <div style="
+                        margin-top:16px;
+                        padding:16px;
+                        border-radius:16px;
+                        background:rgba(251,191,36,0.12);
+                        border:1px solid rgba(251,191,36,0.3);
+                        color:#fde68a;
+                        font-size:14px;
+                        line-height:1.7;
+                      ">
+                        ⚠️ Canon RFは純正レンズの性能は高いですが、価格がやや高めでサードパーティ製も少なめです。<br>
+                        レンズを増やしていく予定なら、トータルの予算も少し余裕を持つのがおすすめです。
+                      </div>
+                      `
+              : ""
+          }
+          <div class="result-list">
+            ${result.items.map((item) => `<div class="result-item">${item}</div>`).join("")}
+          </div>
+          <div class="answers-box">
+            <strong>あなたの回答</strong>
+            ${answerLabels}
+          </div>
+        `;
+      }
+
+      function resetQuiz() {
+        currentStep = 0;
+        answers = {};
+        renderQuestion();
+      }
+
+      resetButton.addEventListener("click", resetQuiz);
+      renderQuestion();
+    </script>
+  </body>
+</html>
