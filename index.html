@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iTL写真部 | 中央大学</title>
-    <meta name="description" content="中央大学 iTL写真部 — 市ヶ谷田町キャンパスを拠点に、写真を撮る・学ぶ・共有する学生団体です。フォトウォーク・撮影会・作品展示など多彩な活動を行っています。">
+    <meta name="description" content="中央大学 iTL写真部 — 市ヶ谷田町キャンパスを拠点に、写真を撮る・学ぶ・共有する学生団体です。iTLFest.2026（10/31・11/1）では「iTL写真展2026」を開催し、801教室で部員が撮影した写真100点超を展示します。">
     <link rel="stylesheet" href="styles.css">
     <link rel="preload"
           as="image"
@@ -19,15 +19,48 @@
     <!-- Open Graph / SNS -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="iTL写真部 | 中央大学">
-    <meta property="og:description" content="中央大学 iTL写真部 — 市ヶ谷田町キャンパスを拠点に、写真を撮る・学ぶ・共有する学生団体です。">
+    <meta property="og:description" content="中央大学 iTL写真部 — iTLFest.2026（10/31・11/1）で「iTL写真展2026」を開催。市ヶ谷田町キャンパス801教室に部員の写真100点超を展示します。">
     <meta property="og:image" content="images/hero-1600.jpg">
     <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="iTL写真部 | 中央大学">
-    <meta name="twitter:description" content="中央大学 iTL写真部 — 写真を撮る・学ぶ・共有する学生団体です。">
+    <meta name="twitter:description" content="中央大学 iTL写真部 — iTLFest.2026（10/31・11/1）で「iTL写真展2026」を開催。801教室に部員の写真100点超を展示します。">
     <meta name="twitter:image" content="images/hero-1600.jpg">
 
     <meta name="color-scheme" content="light">
+
+    <!-- Structured data: iTL写真展2026 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ExhibitionEvent",
+        "name": "iTL写真展2026",
+        "description": "中央大学の大学祭 iTLFest.2026 にて、iTL写真部の部員が撮影した写真100点以上を展示します。",
+        "startDate": "2026-10-31T10:00+09:00",
+        "endDate": "2026-11-01T17:00+09:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "isAccessibleForFree": true,
+        "image": "https://itlphotoclub.com/images/poster-1414.jpg",
+        "location": {
+            "@type": "Place",
+            "name": "中央大学 市ヶ谷田町キャンパス 801教室",
+            "address": {
+                "@type": "PostalAddress",
+                "postalCode": "162-8478",
+                "addressRegion": "東京都",
+                "addressLocality": "新宿区",
+                "streetAddress": "市谷田町1-18",
+                "addressCountry": "JP"
+            }
+        },
+        "organizer": {
+            "@type": "Organization",
+            "name": "中央大学 iTL写真部",
+            "url": "https://itlphotoclub.com"
+        }
+    }
+    </script>
 
     <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -43,7 +76,7 @@
             </a>
             <nav class="site-nav" id="site-nav" aria-label="サイトナビゲーション">
                 <ul class="nav-list" role="list">
-                    <li><a href="#welcome">新歓情報</a></li>
+                    <li><a href="#exhibition">写真展</a></li>
                     <li><a href="#about">部会紹介</a></li>
                     <li><a href="#activities">活動内容</a></li>
                     <li><a href="#schedule">年間予定</a></li>
@@ -99,59 +132,112 @@
             </div>
         </section>
 
-        <!-- 新歓情報 -->
-        <section id="welcome" class="section section--welcome" aria-labelledby="welcome-heading">
+        <!-- iTL写真展2026（iTLFest.2026） -->
+        <section id="exhibition" class="section section--exhibition" aria-labelledby="exhibition-heading">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-label" lang="en">Join Us</span>
-                    <h2 class="section-title" id="welcome-heading">新歓情報</h2>
+                    <span class="section-label" lang="en">Exhibition</span>
+                    <h2 class="section-title" id="exhibition-heading">iTL写真展2026</h2>
                 </div>
-                <div class="welcome-grid">
-                    <div class="welcome-schedule reveal-item">
-                        <h3 class="welcome-subtitle">2026年度 新歓日程</h3>
-                        <ul class="welcome-dates" role="list">
-                            <li class="welcome-date-item is-past">
-                                <span class="welcome-date">4/18（土）</span>
-                                <span class="welcome-venue">
-                                    新宿御苑（新宿）<span class="welcome-status">終了</span>
-                                </span>
-                            </li>
-                            <li class="welcome-date-item is-past">
-                                <span class="welcome-date">4/26（日）</span>
-                                <span class="welcome-venue">
-                                    舎人公園（足立）<span class="welcome-status">終了</span>
-                                </span>
-                            </li>
-                            <li class="welcome-date-item">
-                                <span class="welcome-date">5/1（金）</span>
-                                <span class="welcome-venue">
-                                    羽田空港 第2ターミナル
-                                    <span class="welcome-time">
-                                        <time datetime="2026-05-01T14:00+09:00">14:00</time>–<time datetime="2026-05-01T17:00+09:00">17:00</time>
-                                    </span>
-                                </span>
-                            </li>
-                        </ul>
-                        <p class="welcome-note">※5月末には通常活動を実施予定</p>
-                    </div>
-                    <div class="welcome-cta reveal-item">
-                        <div class="welcome-perks">
-                            <span class="welcome-perk">参加費無料</span>
-                            <span class="welcome-perk">機材貸し出しあり</span>
-                        </div>
-                        <a href="https://line.me/ti/g/z6xrmbPjcY"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="line-btn"
-                           aria-label="新歓LINEグループに参加する（外部リンク）">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M12 2C6.477 2 2 6.145 2 11.259c0 4.006 2.558 7.435 6.278 9.093-.087.78-.333 2.496-.38 2.884-.06.493.184.487.387.355.159-.104 2.528-1.73 3.553-2.432.368.051.744.078 1.162.078 5.522 0 10-4.145 10-9.259C22 6.145 17.523 2 12 2z"/>
-                            </svg>
-                            新歓LINEグループに参加する
+                <div class="exhibition-grid">
+                    <figure class="exhibition-poster reveal-item">
+                        <a href="images/poster-1414.jpg"
+                           class="exhibition-poster-link"
+                           id="poster-open"
+                           aria-haspopup="dialog"
+                           aria-label="iTL写真展2026のポスターを拡大表示する">
+                            <picture>
+                                <source type="image/webp"
+                                        srcset="images/poster-480.webp 480w, images/poster-960.webp 960w, images/poster-1414.webp 1414w"
+                                        sizes="(min-width: 768px) 420px, calc(100vw - 3rem)">
+                                <img src="images/poster-960.jpg"
+                                     srcset="images/poster-480.jpg 480w, images/poster-960.jpg 960w, images/poster-1414.jpg 1414w"
+                                     sizes="(min-width: 768px) 420px, calc(100vw - 3rem)"
+                                     alt="iTL写真展2026 ポスター。夕暮れの港に停泊する客船と満月の写真を背景に、部員が撮影した街並みや観覧車の写真が並ぶ。写真展 @801教室、10月31日（土）・11月1日（日）。"
+                                     width="1414"
+                                     height="2000"
+                                     loading="lazy"
+                                     decoding="async">
+                            </picture>
                         </a>
-                        <p class="welcome-cta-note">参加希望の方は新歓LINEへのご参加をお願いします</p>
+                        <figcaption class="exhibition-poster-caption">ポスターをタップで拡大</figcaption>
+                    </figure>
+                    <div class="exhibition-body reveal-item">
+                        <p class="exhibition-lead">
+                            iTLFest.2026で、<br>部員が撮影した<strong>100点を超える写真</strong>を展示します。
+                        </p>
+                        <p class="exhibition-text">
+                            街角のスナップ、夜景、港の夕暮れ、旅先の風景まで。フォトウォークや撮影会、それぞれの日常の中で切り取った一枚一枚を、iTL801教室に集めました。入場無料・予約不要です。写真に詳しくない方も、ふらっとお立ち寄りください。
+                        </p>
+                        <dl class="exhibition-facts">
+                            <div class="fact-item">
+                                <dt>日程</dt>
+                                <dd>
+                                    <time datetime="2026-10-31">10月31日（土）</time>・<time datetime="2026-11-01">11月1日（日）</time>
+                                </dd>
+                            </div>
+                            <div class="fact-item">
+                                <dt>時間</dt>
+                                <dd>
+                                    <time datetime="10:00">10:00</time>–<time datetime="17:00">17:00</time>
+                                </dd>
+                            </div>
+                            <div class="fact-item">
+                                <dt>入場</dt>
+                                <dd>無料・予約不要</dd>
+                            </div>
+                            <div class="fact-item">
+                                <dt>会場</dt>
+                                <dd>
+                                    中央大学 市ヶ谷田町キャンパス 801教室
+                                    <span class="fact-note">東京都新宿区市谷田町1-18</span>
+                                </dd>
+                            </div>
+                            <div class="fact-item">
+                                <dt>アクセス</dt>
+                                <dd>
+                                    東京メトロ有楽町線・南北線「市ヶ谷」駅 6番出口すぐ
+                                    <span class="fact-note">JR・都営新宿線「市ヶ谷」駅 徒歩約5分</span>
+                                </dd>
+                            </div>
+                            <div class="fact-item">
+                                <dt>展示数</dt>
+                                <dd>部員撮影の写真 100点以上</dd>
+                            </div>
+                        </dl>
                     </div>
                 </div>
+
+                <dialog class="poster-dialog" id="poster-dialog" aria-label="iTL写真展2026 ポスター（拡大表示）">
+                    <button type="button" class="poster-dialog-close" id="poster-close" aria-label="閉じる">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <picture>
+                        <source type="image/webp"
+                                srcset="images/poster-960.webp 960w, images/poster-1414.webp 1414w"
+                                sizes="(min-aspect-ratio: 1414/2000) calc(92vh * 0.707), 92vw">
+                        <img class="poster-dialog-img"
+                             src="images/poster-1414.jpg"
+                             srcset="images/poster-960.jpg 960w, images/poster-1414.jpg 1414w"
+                             sizes="(min-aspect-ratio: 1414/2000) calc(92vh * 0.707), 92vw"
+                             alt="iTL写真展2026 ポスター。写真展 @801教室、10月31日（土）・11月1日（日）。"
+                             width="1414"
+                             height="2000"
+                             loading="lazy"
+                             decoding="async">
+                    </picture>
+                </dialog>
+
+                <aside class="welcome-ended reveal-item" aria-labelledby="welcome-ended-heading">
+                    <h3 class="welcome-ended-title" id="welcome-ended-heading">
+                        2026年度 新歓活動<span class="welcome-status">終了</span>
+                    </h3>
+                    <p class="welcome-ended-text">
+                        新宿御苑・舎人公園・羽田空港での新歓撮影会にご参加いただいた皆さま、ありがとうございました。入部や見学のご相談は、<a href="#contact">お問い合わせ</a>からいつでもどうぞ。
+                    </p>
+                </aside>
             </div>
         </section>
 
@@ -263,6 +349,7 @@
                         <div class="schedule-month">4月</div>
                         <div class="schedule-body">
                             <h3 class="schedule-title">新歓撮影会</h3>
+                            <p class="schedule-desc">2026年度は新宿御苑・舎人公園・羽田空港で開催</p>
                         </div>
                     </li>
                     <li class="schedule-item reveal-item">
@@ -273,10 +360,10 @@
                         </div>
                     </li>
                     <li class="schedule-item reveal-item">
-                        <div class="schedule-month">11月</div>
+                        <div class="schedule-month">10–11月</div>
                         <div class="schedule-body">
-                            <h3 class="schedule-title">iTLFest. 写真部展示</h3>
-                            <p class="schedule-desc">各イベント・団体の撮影、軽音楽サークルライブ配信</p>
+                            <h3 class="schedule-title">iTLFest. 写真展</h3>
+                            <p class="schedule-desc">2026年度は「iTL写真展2026」（10/31・11/1、801教室）。各イベント・団体の撮影、軽音楽サークルライブ配信</p>
                         </div>
                     </li>
                 </ol>

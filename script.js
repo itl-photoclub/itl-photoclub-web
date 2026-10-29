@@ -136,3 +136,26 @@ if (heroImg) {
         heroImg.addEventListener('error', () => heroImg.classList.add('is-loaded'), { once: true });
     }
 }
+
+// --- Exhibition poster: enlarge in a modal dialog ---
+// The link still points at the full-size image, so it works without JS
+// or where <dialog> is unsupported.
+const posterOpen   = document.getElementById('poster-open');
+const posterDialog = document.getElementById('poster-dialog');
+const posterClose  = document.getElementById('poster-close');
+
+if (posterOpen && posterDialog && typeof posterDialog.showModal === 'function') {
+    posterOpen.addEventListener('click', e => {
+        e.preventDefault();
+        posterDialog.showModal();
+    });
+
+    posterClose.addEventListener('click', () => posterDialog.close());
+
+    // Close when tapping the backdrop (outside the poster image)
+    posterDialog.addEventListener('click', e => {
+        if (e.target === posterDialog) posterDialog.close();
+    });
+
+    posterDialog.addEventListener('close', () => posterOpen.focus());
+}

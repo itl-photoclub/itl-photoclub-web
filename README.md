@@ -13,7 +13,7 @@
 ├── index.html       エントリ
 ├── styles.css       全スタイル（OKLCH + デザイントークン）
 ├── script.js        ヘッダー / モバイルメニュー / スクロールリビール
-├── images/          ヒーロー画像（WebP + JPEG、4 サイズ）
+├── images/          ヒーロー画像（WebP + JPEG、4 サイズ） / 写真展ポスター（poster-*、3 サイズ）
 └── .impeccable.md   デザインコンテキスト（ユーザー像・ブランド方針）
 ```
 
