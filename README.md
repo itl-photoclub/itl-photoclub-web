@@ -13,6 +13,9 @@
 ├── index.html       エントリ
 ├── styles.css       全スタイル（OKLCH + デザイントークン）
 ├── script.js        ヘッダー / モバイルメニュー / スクロールリビール
+├── favicon.ico      ファビコン（16/32/48px）
+├── favicon-96.png   ファビコン（96px、PNG）
+├── apple-touch-icon.png  iOS ホーム画面用（180px）
 ├── images/          ヒーロー画像（WebP + JPEG、4 サイズ） / 写真展ポスター（poster-*、3 サイズ）
 └── .impeccable.md   デザインコンテキスト（ユーザー像・ブランド方針）
 ```
